@@ -1,0 +1,23 @@
+aby móc łączyć się poprzez odbc z Symfonią Handel 50c 2022 w systemie Windows należy doinstalować driver odbc sql ze strony Microsoftu
+https://www.microsoft.com/en-us/download/details.aspx?id=56567
+
+Plik o nazwie:
+msodbcsql.msi
+
+Konfiguracja bazy danych
+DRIVER={ODBC Driver 17 for SQL Server};Server=KomputerStacjonarny\SAGEPL;Database=demo;UID=Master;PWD=TESTOWEhaslo1234!$%;
+
+Do testowania wersji demo należy założyć użytkownika do logowania się via SQL oraz nadać mu opcje użytkownika Windows, hasło musi zawierać małe duże litery, cyfry oraz znaki specjalne
+
+Potem dodać do ODBC Data Sources
+
+
+Jeśli wszystko jest w porzadku powinniśmy otrzymać
+
+Ostatnią rzeczą aby uprościć proces wymiany danych należy pamiętać że symfonia 50c działa na prefiksach prefix.nazwa_tabeli
+
+Przy odpytywaniu bazy danych należy używac funkcji odbc_connect
+Kod:
+
+odbc_connect("Driver={ODBC Driver 17 for SQL Server};Server=KOMPUTER-STACJONARNY\SAGEPL;Database=demo;",
+    "Master", "TESTOwehaslo12345!@#$", SQL_CUR_USE_DRIVER);
